@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(getApplicationContext(),Login.class);
 
             startActivity(intent);
-           Animatoo.animateSpin(this);
+           Animatoo.animateSlideUp(this);
 
         } else if (id == R.id.nav_profile) {
             Intent intent=new Intent(getApplicationContext(),Profile.class);

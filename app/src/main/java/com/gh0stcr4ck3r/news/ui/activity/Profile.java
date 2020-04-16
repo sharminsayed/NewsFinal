@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity {
         } else {
             Toast.makeText(Profile.this,"please login first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Profile.this, Login.class));
-            Animatoo.animateDiagonal(Profile.this);
+            Animatoo.animateSlideLeft(Profile.this);
             finish();
         }
 

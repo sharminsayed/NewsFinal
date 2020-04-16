@@ -58,7 +58,7 @@ public class SignUp extends AppCompatActivity {
             public void onResponse(Call<List<Author>> call, Response<List<Author>> response) {
                 Toast.makeText(SignUp.this, "sign up Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), Login.class));
-                Animatoo.animateShrink(SignUp.this);
+                Animatoo.animateSlideLeft(SignUp.this);
             }
 
             @Override

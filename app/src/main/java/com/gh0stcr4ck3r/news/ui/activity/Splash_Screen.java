@@ -23,10 +23,10 @@ public class Splash_Screen extends AppCompatActivity {
           public void run() {
               Intent intent=new Intent(getApplicationContext(), MainActivity.class);
               startActivity(intent);
-              Animatoo.animateSpin(Splash_Screen.this);
+              Animatoo.animateSlideDown(Splash_Screen.this);
               finish();
 
           }
-      },4000);
+      },3000);
     }
 }

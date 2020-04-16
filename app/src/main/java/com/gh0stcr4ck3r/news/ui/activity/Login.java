@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
                     sherdPref.saveTokenAndID(token, String.valueOf(user_id));
                     Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    Animatoo.animateShrink(Login.this);
+                    Animatoo.animateSlideRight(Login.this);
                 }
             }
 
