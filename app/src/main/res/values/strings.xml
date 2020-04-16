@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+
+
+    <string name="app_link">nai link</string>
+    <string name="rate_app_url">nai link</string>
+    <string name="dont_have_account" />
+    <string name="signup_now" />
+    <string name="login" />
+    <string name="password" />
+    <string name="email" />
+    <string name="logo_img" />
+</resources>
