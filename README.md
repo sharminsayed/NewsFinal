@@ -22,6 +22,7 @@
 # REST API link is-
 
 # https://github.com/p4l4s6/NewsPortal_Django
+
    
 ![Screenshot_20200829-212120](https://user-images.githubusercontent.com/48132262/91640284-3cf85100-ea3e-11ea-8813-6aa8986f79c0.png)
 
