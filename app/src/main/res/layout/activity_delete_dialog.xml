@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="do_you_want_"
+        android:text="Do you want?"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="25sp"

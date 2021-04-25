@@ -2,6 +2,7 @@ package com.gh0stcr4ck3r.news.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.gh0stcr4ck3r.news.R;
 import com.gh0stcr4ck3r.news.network.ApiEndpoint;
 import com.gh0stcr4ck3r.news.network.RetrofitInstance;
 import com.gh0stcr4ck3r.news.response.Author;
+import com.gh0stcr4ck3r.news.utils.ProgressDialogUtils;
 import com.gh0stcr4ck3r.news.utils.SherdPref;
 
 import java.util.List;
@@ -52,24 +54,34 @@ public class Login extends AppCompatActivity {
 
 
     public void CreateLogin(Author author){
+        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Login.this);
+        progressDialog.show();
         Retrofit retrofit= RetrofitInstance.getRetrofitInstace();
         ApiEndpoint apiEndpoint=retrofit.create(ApiEndpoint.class);
         apiEndpoint.createLogin(author).enqueue(new Callback<Author>() {
             @Override
             public void onResponse(Call<Author> call, Response<Author> response) {
+                progressDialog.dismiss();
                 if (response.isSuccessful()){
-                    String token=response.body().getToken();
-                    Integer user_id = response.body().getId();
-                    SherdPref sherdPref=new SherdPref(Login.this);
-                    sherdPref.saveTokenAndID(token, String.valueOf(user_id));
-                    Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    Animatoo.animateSlideRight(Login.this);
+                    if (response.body().getToken()!=null){
+                        String token=response.body().getToken();
+                        Integer user_id = response.body().getId();
+                        SherdPref sherdPref=new SherdPref(Login.this);
+                        sherdPref.saveTokenAndID(token, String.valueOf(user_id));
+                        Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        Animatoo.animateSlideRight(Login.this);
+                    }
+                    else {
+                        Toast.makeText(Login.this,"Try again", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
 
             @Override
             public void onFailure(Call<Author> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(Login.this,"can not connect",Toast.LENGTH_SHORT).show();
 
 
@@ -82,7 +94,7 @@ public class Login extends AppCompatActivity {
 
     public void gotoSignupActivity(View view) {
         startActivity(new Intent(Login.this, SignUp.class));
-        Animatoo.animateDiagonal(Login.this);
+        Animatoo.animateSlideLeft(Login.this);
         finish();
     }
 }

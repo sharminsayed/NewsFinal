@@ -72,11 +72,11 @@ public class Profile extends AppCompatActivity {
                         lname.setText(response.body().getLastName());
                         email.setText(response.body().getEmail());
 
-                        Toast.makeText(Profile.this,"retrive Successfully", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Profile.this,"", Toast.LENGTH_SHORT).show();
 
                     }
                     else {
-                        Toast.makeText(Profile.this,"something is fishy", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this,"Try again", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -103,13 +103,13 @@ public class Profile extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Author> call, Response<Author> response) {
                     if(response.isSuccessful()) {
-                        Toast.makeText(Profile.this, "update profile successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
                         Animatoo.animateSwipeRight(Profile.this);
                          retriveProfile();
 
                     }
                     else {
-                        Toast.makeText(Profile.this, "something is fishy", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this, "Try again", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -149,12 +149,14 @@ public class Profile extends AppCompatActivity {
 
 
     public void deleteProfile(String user_id){
+        final SherdPref sherdPref = new SherdPref(Profile.this);
         Retrofit retrofit=RetrofitInstance.getRetrofitInstace();
         ApiEndpoint apiEndpoint=retrofit.create(ApiEndpoint.class);
         apiEndpoint.deleteProfile(user_id).enqueue(new Callback<Author>() {
             @Override
             public void onResponse(Call<Author> call, Response<Author> response) {
-                Toast.makeText(Profile.this, "Delete profile successful", Toast.LENGTH_SHORT).show();
+                sherdPref.clearToken();
+                Toast.makeText(Profile.this, "Delete profile successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 Animatoo.animateSwipeRight(Profile.this);
                 finish();
@@ -163,7 +165,7 @@ public class Profile extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Author> call, Throwable t) {
-                Toast.makeText(Profile.this, "something is wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile.this, "Try again", Toast.LENGTH_SHORT).show();
 
 
             }

@@ -112,7 +112,7 @@ public class Article_Details extends AppCompatActivity {
             public void onFailure(@NotNull Call<Article> call, Throwable t) {
                 progressDialog.dismiss();
 
-                Toast.makeText(Article_Details.this, "can not connect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Article_Details.this, "Can not connect", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -188,6 +188,7 @@ public class Article_Details extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         DeleteComment(comment.getId().toString());
+                        d.dismiss();
 
                     }
                 });
@@ -212,14 +213,15 @@ public class Article_Details extends AppCompatActivity {
 //get comment
 
     private void getComment(String id) {
-       // progressDialog.show();
+        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
+        progressDialog.show();
         //baseRespons.clear();
         Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
         ApiEndpoint api = retrofit.create(ApiEndpoint.class);
         api.getComment(id).enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-               // progressDialog.dismiss();
+                progressDialog.dismiss();
 
                 commentList = response.body();
                 // title.setText(response.body().getTitle());
@@ -231,8 +233,8 @@ public class Article_Details extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                //progressDialog.dismiss();
-                Toast.makeText(Article_Details.this, "can not eComment", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                Toast.makeText(Article_Details.this, "Can not connect to server", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -240,8 +242,10 @@ public class Article_Details extends AppCompatActivity {
     //post comment
 
     private void postComment(Comment comment) {
+        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
         SherdPref sharedPrefUtils = new SherdPref(Article_Details.this);
         if (sharedPrefUtils.isLoggedIn()) {
+            progressDialog.show();
             String token = "Token " + sharedPrefUtils.getToken();
             Log.d("++++", String.valueOf(token));
             Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
@@ -249,6 +253,7 @@ public class Article_Details extends AppCompatActivity {
             apiEndpoint.postComment(token, comment).enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(Call<Comment> call, Response<Comment> response) {
+                    progressDialog.dismiss();
                     if (response.isSuccessful()) {
                         eComment.setText("");
                         Toast.makeText(Article_Details.this, "Comment successful", Toast.LENGTH_SHORT).show();
@@ -256,13 +261,14 @@ public class Article_Details extends AppCompatActivity {
                         getComment(article_id);
 
                     } else {
-                        Toast.makeText(Article_Details.this, "something is fishy", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Article_Details.this, "Try again", Toast.LENGTH_SHORT).show();
                     }
 
                 }
 
                 @Override
                 public void onFailure(Call<Comment> call, Throwable t) {
+                    progressDialog.dismiss();
                     Toast.makeText(Article_Details.this, "Can not connect to server", Toast.LENGTH_SHORT).show();
 
                 }
@@ -285,10 +291,10 @@ public class Article_Details extends AppCompatActivity {
 
 
     public void updateComment(Comment comment, String comment_id) {
-
-
+        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
         SherdPref sharedPrefUtils = new SherdPref(Article_Details.this);
         if (sharedPrefUtils.isLoggedIn()) {
+            progressDialog.show();
             String token = "Token " + sharedPrefUtils.getToken();
             Log.d("++++", String.valueOf(token));
             Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
@@ -296,6 +302,7 @@ public class Article_Details extends AppCompatActivity {
             apiEndpoint.updateComment(token, comment, comment_id).enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(Call<Comment> call, Response<Comment> response) {
+                    progressDialog.dismiss();
 
                     if (response.isSuccessful()) {
                         eComment.setText("");
@@ -310,6 +317,7 @@ public class Article_Details extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Comment> call, Throwable t) {
+                    progressDialog.dismiss();
                     Toast.makeText(Article_Details.this, "cannot connect", Toast.LENGTH_SHORT).show();
 
                 }
@@ -351,27 +359,30 @@ public class Article_Details extends AppCompatActivity {
 
     private void DeleteComment(final String comment_id) {
 
-
+        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
         SherdPref sharedPrefUtils = new SherdPref(Article_Details.this);
         if (sharedPrefUtils.isLoggedIn()) {
+            progressDialog.show();
             String token = "Token " + sharedPrefUtils.getToken();
             Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
             ApiEndpoint apiEndpoint = retrofit.create(ApiEndpoint.class);
             apiEndpoint.deleteComment(token, comment_id).enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(Call<Comment> call, Response<Comment> response) {
+                    progressDialog.dismiss();
                     if (response.isSuccessful()) {
                         Toast.makeText(Article_Details.this, "Delete successful", Toast.LENGTH_SHORT).show();
                         getComment(article_id);
 
                     } else {
-                        Toast.makeText(Article_Details.this, "Try agin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Article_Details.this, "Try again", Toast.LENGTH_SHORT).show();
                     }
 
                 }
 
                 @Override
                 public void onFailure(Call<Comment> call, Throwable t) {
+                    progressDialog.dismiss();
                     Toast.makeText(Article_Details.this, "Can not connect to server", Toast.LENGTH_SHORT).show();
 
                 }

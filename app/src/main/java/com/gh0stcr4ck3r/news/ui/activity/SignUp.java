@@ -2,6 +2,7 @@ package com.gh0stcr4ck3r.news.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.gh0stcr4ck3r.news.R;
 import com.gh0stcr4ck3r.news.network.ApiEndpoint;
 import com.gh0stcr4ck3r.news.network.RetrofitInstance;
 import com.gh0stcr4ck3r.news.response.Author;
+import com.gh0stcr4ck3r.news.utils.ProgressDialogUtils;
 
 import java.util.List;
 
@@ -51,11 +53,14 @@ public class SignUp extends AppCompatActivity {
 
 
     public void createUser(Author author){
+        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(SignUp.this);
+        progressDialog.show();
         Retrofit retrofit= RetrofitInstance.getRetrofitInstace();
         ApiEndpoint apiEndpoint=retrofit.create(ApiEndpoint.class);
         apiEndpoint.createUser(author).enqueue(new Callback<List<Author>>() {
             @Override
             public void onResponse(Call<List<Author>> call, Response<List<Author>> response) {
+                progressDialog.dismiss();
                 Toast.makeText(SignUp.this, "sign up Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), Login.class));
                 Animatoo.animateSlideLeft(SignUp.this);
@@ -63,6 +68,7 @@ public class SignUp extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Author>> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(SignUp.this, "Try again", Toast.LENGTH_SHORT).show();
 
             }
@@ -74,7 +80,7 @@ public class SignUp extends AppCompatActivity {
     public void goToLogin(View view) {
         Intent intent=new Intent(SignUp.this,Login.class);
         startActivity(intent);
-        Animatoo.animateShrink(SignUp.this);
+        Animatoo.animateSlideLeft(SignUp.this);
         finish();
 
     }

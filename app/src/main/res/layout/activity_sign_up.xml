@@ -26,6 +26,7 @@
 
 
         <EditText
+            android:textSize="15sp"
             android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,11 +35,12 @@
             android:drawableStart="@drawable/ic_person_black_24dp"
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:drawablePadding="15dp"
-            android:hint="first_name_hint"
+            android:hint="First name"
             android:inputType="textEmailAddress" />
 
 
         <EditText
+            android:textSize="15sp"
             android:id="@+id/last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,11 +49,12 @@
             android:drawableStart="@drawable/ic_person_black_24dp"
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:drawablePadding="15dp"
-            android:hint="last_name_hint"
+            android:hint="Last name"
             android:inputType="textEmailAddress" />
 
 
         <EditText
+            android:textSize="15sp"
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,11 +63,12 @@
             android:drawableStart="@drawable/ic_email"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="15dp"
-            android:hint="email"
+            android:hint="Email"
             android:inputType="textEmailAddress" />
 
 
         <EditText
+            android:textSize="15sp"
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,10 +77,11 @@
             android:drawableStart="@drawable/ic_password"
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="15dp"
-            android:hint="password"
+            android:hint="Password"
             android:inputType="textPassword" />
 
         <Button
+            android:textSize="15sp"
             android:id="@+id/imgButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -98,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="already_have_account"
+                android:text="Already have account?"
                 android:textColor="#000" />
 
             <TextView
@@ -109,7 +114,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:scaleType="center"
-                android:text="login_now"
+                android:text="Login now"
                 android:onClick="goToLogin"
                 android:textAlignment="center"
                 android:textColor="#03A9F4"

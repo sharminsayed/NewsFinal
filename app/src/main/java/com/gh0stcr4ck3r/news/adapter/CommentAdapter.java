@@ -48,7 +48,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
         holder.Cname.setText(String.format("%s %s", commentList.get(position).getUser().getFirstName(), commentList.get(position).getUser().getLastName()));;
         holder.Cdetails.setText(commentList.get(position).getDetails());
-        Glide.with(mcontext).load(commentList.get(position).getUser().getProfilePic()).into(holder.imageView);
+        Glide.with(mcontext).load(commentList.get(position).getUser().getProfilePic()).placeholder(R.drawable.dummy).into(holder.imageView);
 
 
 

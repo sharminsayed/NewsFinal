@@ -65,6 +65,7 @@
                     android:textStyle="italic" />
 
                 <TextView
+                    android:text="demo data"
                     android:id="@+id/article_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

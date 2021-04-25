@@ -23,12 +23,15 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:padding="5dp"
+                android:src="@drawable/dummy"
                 android:id="@+id/comment_image"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
                 android:layout_weight="2"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
+                android:scaleType="centerCrop"
                 />
 
             <LinearLayout

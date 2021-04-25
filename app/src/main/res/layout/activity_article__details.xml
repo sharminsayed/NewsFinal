@@ -89,7 +89,7 @@
                     android:gravity="center"
                     android:text="Date:"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:textStyle="italic|bold" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:gravity="center"
                     android:hint="22-Mar-2020"
                     android:textColor="#555555"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
                     android:textStyle="italic" />
 
                 <View
@@ -116,7 +116,7 @@
                     android:layout_weight="0.75"
                     android:text="Author:"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:textStyle="italic|bold" />
 
                 <TextView
@@ -127,7 +127,7 @@
                     android:layout_weight="1.25"
                     android:hint="Author name"
                     android:textColor="#555555"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
                     android:textStyle="italic" />
 
             </LinearLayout>
@@ -295,7 +295,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4.25"
-            android:hint="write_comment"
+            android:hint="write comment"
             android:padding="10dp"
             android:textSize="15dp" />
 

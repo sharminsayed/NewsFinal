@@ -10,12 +10,13 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile_pic"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:contentDescription="@string/logo_img"
         android:src="@drawable/bgground" />
 
 
     <EditText
+        android:textSize="15sp"
         android:id="@+id/update_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,12 +24,13 @@
         android:background="@drawable/editext_white_bg"
         android:drawableStart="@drawable/ic_person_black_24dp"
         android:drawablePadding="15dp"
-        android:hint="first_name_hint"
+        android:hint="First name"
         android:inputType="textEmailAddress"
         android:drawableLeft="@drawable/ic_person_black_24dp" />
 
 
     <EditText
+        android:textSize="15sp"
         android:id="@+id/update_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,11 +39,12 @@
         android:drawableStart="@drawable/ic_person_black_24dp"
         android:drawableLeft="@drawable/ic_person_black_24dp"
         android:drawablePadding="15dp"
-        android:hint="last_name_hint"
+        android:hint="Last name"
         android:inputType="textEmailAddress" />
 
 
     <EditText
+        android:textSize="15sp"
         android:id="@+id/update_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,12 +52,13 @@
         android:background="@drawable/editext_white_bg"
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="15dp"
-        android:hint="email"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:drawableLeft="@drawable/ic_email" />
 
 
     <EditText
+        android:textSize="15sp"
         android:id="@+id/update_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,7 +66,7 @@
         android:background="@drawable/editext_white_bg"
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="15dp"
-        android:hint="password"
+        android:hint="Enter your password"
         android:inputType="textPassword"
         android:drawableLeft="@drawable/ic_password" />
 

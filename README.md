@@ -6,7 +6,7 @@
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
+ https://github.com/sharminsayed/NewsFinal   implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

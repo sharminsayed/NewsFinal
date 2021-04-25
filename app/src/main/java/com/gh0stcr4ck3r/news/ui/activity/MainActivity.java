@@ -219,15 +219,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void shareApp() {
-        Intent sendIntent = new Intent();
+        /*Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out the App at: " + getString(R.string.app_link));
         sendIntent.setType("text/plain");
-        startActivity(sendIntent);
+        startActivity(sendIntent);*/
     }
 
     public void showRating() {
-        Uri uri = Uri.parse(getString(R.string.rate_app_url));
+      /*  Uri uri = Uri.parse(getString(R.string.rate_app_url));
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
                 Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse(getString(R.string.app_link))));
-        }
+        }*/
     }
 }
 
