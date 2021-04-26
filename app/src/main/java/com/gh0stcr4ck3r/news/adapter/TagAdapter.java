@@ -41,7 +41,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         holder.tag_name.setText(tagList.get(position).getName());
-        holder.tagCard.setOnClickListener(new View.OnClickListener() {
+        holder.tag_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String gId=tagList.get(position).getId().toString();
@@ -72,7 +72,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
             super(itemView);
 
             tag_name=itemView.findViewById(R.id.tag_text);
-            tagCard=itemView.findViewById(R.id.tag_card);
+          //  tagCard=itemView.findViewById(R.id.tag_card);
 
         }
     }

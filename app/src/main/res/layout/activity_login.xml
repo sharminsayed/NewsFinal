@@ -20,28 +20,31 @@
             android:contentDescription="@string/logo_img"
             android:src="@drawable/bgground" />
 
+
         <EditText
+            android:padding="10dp"
             android:textSize="15sp"
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/editext_white_bg"
-            android:drawableStart="@drawable/ic_email"
-            android:drawableLeft="@drawable/ic_email"
+            android:drawableStart="@drawable/ic_envelope"
+            android:drawableLeft="@drawable/ic_envelope"
             android:drawablePadding="15dp"
             android:hint="Email"
             android:inputType="textEmailAddress" />
 
         <EditText
+            android:padding="10dp"
             android:textSize="15sp"
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/editext_white_bg"
-            android:drawableStart="@drawable/ic_password"
-            android:drawableLeft="@drawable/ic_password"
+            android:drawableStart="@drawable/ic_padlock"
+            android:drawableLeft="@drawable/ic_padlock"
             android:drawablePadding="15dp"
             android:hint="Password"
             android:inputType="textPassword" />

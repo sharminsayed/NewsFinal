@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,11 +48,12 @@ public class Article_Details extends AppCompatActivity {
     TagAdapter tagAdapter;
     EditText eComment;
     String article_id;
-    private TextView title, details, created, update, category, author, tagText, newsCat;;
+    private TextView title, created, update, category, author, tagText, newsCat;;
     private ImageView dImageview;
     List<Comment> commentList;
     CommentAdapter commentAdapter;
     Comment comment;
+    WebView details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class Article_Details extends AppCompatActivity {
         dImageview=findViewById(R.id.image_details);
         author = findViewById(R.id.author);
         eComment = findViewById(R.id.detail_comment);
+
         getDetails(article_id);
 
         PopulateTagItem();
@@ -92,7 +95,8 @@ public class Article_Details extends AppCompatActivity {
                     if (response.body() != null) {
                         title.setText(response.body().getTitle());
                         newsCat.setText(response.body().getCategory().getTitle());
-                        details.setText(stripHtml(response.body().getDetails()));
+                        details.loadData("<p style=\"text-align: justify\">"+ response.body().getDetails() +"</p>", "text/html", "UTF-8");
+                      //  details.loadData((response.body().getDetails());
                         Log.d("+++", String.valueOf(response.body().getCreatedAt()));
                         try {
                             created.setText(DatePref.ConvertToNewFormate(response.body().getCreatedAt()));

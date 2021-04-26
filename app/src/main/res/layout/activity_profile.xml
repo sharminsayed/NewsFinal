@@ -22,11 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/editext_white_bg"
-        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawableStart="@drawable/ic_user"
         android:drawablePadding="15dp"
         android:hint="First name"
         android:inputType="textEmailAddress"
-        android:drawableLeft="@drawable/ic_person_black_24dp" />
+        android:drawableLeft="@drawable/ic_user"
+        android:padding="10dp"/>
 
 
     <EditText
@@ -36,8 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/editext_white_bg"
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:drawableStart="@drawable/ic_user"
+        android:drawableLeft="@drawable/ic_user"
+        android:padding="10dp"
         android:drawablePadding="15dp"
         android:hint="Last name"
         android:inputType="textEmailAddress" />
@@ -50,25 +52,27 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/editext_white_bg"
-        android:drawableStart="@drawable/ic_email"
+        android:drawableStart="@drawable/ic_envelope"
         android:drawablePadding="15dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:drawableLeft="@drawable/ic_email" />
+        android:drawableLeft="@drawable/ic_envelope"
+        android:padding="10dp"/>
 
 
     <EditText
+        android:padding="10dp"
         android:textSize="15sp"
         android:id="@+id/update_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/editext_white_bg"
-        android:drawableStart="@drawable/ic_password"
+        android:drawableStart="@drawable/ic_padlock"
         android:drawablePadding="15dp"
         android:hint="Enter your password"
         android:inputType="textPassword"
-        android:drawableLeft="@drawable/ic_password" />
+        android:drawableLeft="@drawable/ic_padlock" />
 
 
     <LinearLayout
