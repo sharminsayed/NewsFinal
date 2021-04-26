@@ -140,7 +140,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="fitCenter" />
-
+            <WebView
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:id="@+id/video_details"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                 />
             <View
                 android:id="@+id/view"
                 android:layout_width="0dp"

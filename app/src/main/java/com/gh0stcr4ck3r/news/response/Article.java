@@ -41,6 +41,10 @@ public class Article {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("video_key")
+    @Expose
+    private String videoKey;
+
 
     public Integer getId() {
         return id;
@@ -130,4 +134,11 @@ public class Article {
         this.updatedAt = updatedAt;
     }
 
+    public String getVideoKey() {
+        return videoKey;
+    }
+
+    public void setVideoKey(String videoKey) {
+        this.videoKey = videoKey;
+    }
 }

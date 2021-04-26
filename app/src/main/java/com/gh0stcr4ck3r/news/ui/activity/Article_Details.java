@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,12 +50,13 @@ public class Article_Details extends AppCompatActivity {
     TagAdapter tagAdapter;
     EditText eComment;
     String article_id;
-    private TextView title, created, update, category, author, tagText, newsCat;;
+    private TextView title, created, update, category, author, tagText, newsCat;
+    ;
     private ImageView dImageview;
     List<Comment> commentList;
     CommentAdapter commentAdapter;
     Comment comment;
-    WebView details;
+    WebView details, video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +72,10 @@ public class Article_Details extends AppCompatActivity {
         newsCat = findViewById(R.id.tv_news_cat);
         details = findViewById(R.id.details);
         created = findViewById(R.id.created);
-        dImageview=findViewById(R.id.image_details);
+        dImageview = findViewById(R.id.image_details);
         author = findViewById(R.id.author);
         eComment = findViewById(R.id.detail_comment);
+        video = findViewById(R.id.video_details);
 
         getDetails(article_id);
 
@@ -83,7 +87,7 @@ public class Article_Details extends AppCompatActivity {
 
     //For Article Details
     private void getDetails(String id) {
-        final ProgressDialog progressDialog=ProgressDialogUtils.getProgressDialog(Article_Details.this);
+        final ProgressDialog progressDialog = ProgressDialogUtils.getProgressDialog(Article_Details.this);
         progressDialog.show();
         Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
         ApiEndpoint api = retrofit.create(ApiEndpoint.class);
@@ -95,8 +99,8 @@ public class Article_Details extends AppCompatActivity {
                     if (response.body() != null) {
                         title.setText(response.body().getTitle());
                         newsCat.setText(response.body().getCategory().getTitle());
-                        details.loadData("<p style=\"text-align: justify\">"+ response.body().getDetails() +"</p>", "text/html", "UTF-8");
-                      //  details.loadData((response.body().getDetails());
+                        details.loadData("<p style=\"text-align: justify\">" + response.body().getDetails() + "</p>", "text/html", "UTF-8");
+                        //  details.loadData((response.body().getDetails());
                         Log.d("+++", String.valueOf(response.body().getCreatedAt()));
                         try {
                             created.setText(DatePref.ConvertToNewFormate(response.body().getCreatedAt()));
@@ -104,7 +108,16 @@ public class Article_Details extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         author.setText(String.format("%s %s", response.body().getAuthor().getFirstName(), response.body().getAuthor().getLastName()));
-                        Glide.with(getApplicationContext()).load(response.body().getThumbnail()).into(dImageview);
+                        if (response.body().getVideoKey() != null && !response.body().getVideoKey().isEmpty()) {
+
+                            video.setVisibility(View.VISIBLE);
+                            dImageview.setVisibility(View.GONE);
+                            loadVideo(response.body().getVideoKey());
+
+
+                        } else {
+                            Glide.with(getApplicationContext()).load(response.body().getThumbnail()).into(dImageview);
+                        }
 
 
                     }
@@ -122,8 +135,8 @@ public class Article_Details extends AppCompatActivity {
         });
     }
 
-  //populate recyclerview for tag
-    public void PopulateTagItem(){
+    //populate recyclerview for tag
+    public void PopulateTagItem() {
         tagList = new ArrayList<>();
         tagRecyclerView = (RecyclerView) findViewById(R.id.tag_recycler);
         tagAdapter = new TagAdapter(tagList, getApplicationContext());
@@ -138,9 +151,9 @@ public class Article_Details extends AppCompatActivity {
     }
 
     //get article by tag
-    public void getArticleListByTag(){
-        Retrofit retrofit=RetrofitInstance.getRetrofitInstace();
-        ApiEndpoint apiEndpoint=retrofit.create(ApiEndpoint.class);
+    public void getArticleListByTag() {
+        Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
+        ApiEndpoint apiEndpoint = retrofit.create(ApiEndpoint.class);
         apiEndpoint.aticleListByTag().enqueue(new Callback<List<Tag>>() {
             @Override
             public void onResponse(Call<List<Tag>> call, Response<List<Tag>> response) {
@@ -160,7 +173,7 @@ public class Article_Details extends AppCompatActivity {
 
     //pipulate recyclerview for Comment
 
-    public void PopulateCommentItem(){
+    public void PopulateCommentItem() {
         commentList = new ArrayList<>();
         CrecyclerView = (RecyclerView) findViewById(R.id.rv_comment);
         commentAdapter = new CommentAdapter(commentList, Article_Details.this, new CommentAdapter.OnItemClicked() {
@@ -217,7 +230,7 @@ public class Article_Details extends AppCompatActivity {
 //get comment
 
     private void getComment(String id) {
-        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
+        final ProgressDialog progressDialog = ProgressDialogUtils.getProgressDialog(Article_Details.this);
         progressDialog.show();
         //baseRespons.clear();
         Retrofit retrofit = RetrofitInstance.getRetrofitInstace();
@@ -246,7 +259,7 @@ public class Article_Details extends AppCompatActivity {
     //post comment
 
     private void postComment(Comment comment) {
-        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
+        final ProgressDialog progressDialog = ProgressDialogUtils.getProgressDialog(Article_Details.this);
         SherdPref sharedPrefUtils = new SherdPref(Article_Details.this);
         if (sharedPrefUtils.isLoggedIn()) {
             progressDialog.show();
@@ -279,7 +292,7 @@ public class Article_Details extends AppCompatActivity {
             });
         } else {
             Toast.makeText(Article_Details.this, "You need to login ", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Article_Details.this,Login.class));
+            startActivity(new Intent(Article_Details.this, Login.class));
             finish();
         }
 
@@ -295,7 +308,7 @@ public class Article_Details extends AppCompatActivity {
 
 
     public void updateComment(Comment comment, String comment_id) {
-        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
+        final ProgressDialog progressDialog = ProgressDialogUtils.getProgressDialog(Article_Details.this);
         SherdPref sharedPrefUtils = new SherdPref(Article_Details.this);
         if (sharedPrefUtils.isLoggedIn()) {
             progressDialog.show();
@@ -363,7 +376,7 @@ public class Article_Details extends AppCompatActivity {
 
     private void DeleteComment(final String comment_id) {
 
-        final ProgressDialog progressDialog= ProgressDialogUtils.getProgressDialog(Article_Details.this);
+        final ProgressDialog progressDialog = ProgressDialogUtils.getProgressDialog(Article_Details.this);
         SherdPref sharedPrefUtils = new SherdPref(Article_Details.this);
         if (sharedPrefUtils.isLoggedIn()) {
             progressDialog.show();
@@ -401,6 +414,23 @@ public class Article_Details extends AppCompatActivity {
 
     public String stripHtml(String html) {
         return Html.fromHtml(html).toString();
+    }
+
+
+    public void loadVideo(String videoKey) {
+        String frameVideo = "<html><body>Video From YouTube<br><iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/"+videoKey+"\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+
+        video.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+        WebSettings webSettings = video.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        video.loadData(frameVideo, "text/html", "utf-8");
+
+
     }
 
 }
